@@ -1052,6 +1052,23 @@
   <a href="https://wa.me/[+52-81-0000-0000]?text=Hola%20Loop%2C%20me%20interesa%20saber%20más" class="whatsapp-btn" title="Contactar por WhatsApp">💬</a>
 
   <script>
+    // Siempre abrir la página desde el inicio
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    window.scrollTo(0, 0);
+    window.addEventListener('load', () => window.scrollTo(0, 0));
+
+    // Enlaces internos: scroll suave sin agregar #seccion a la URL
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const target = id ? document.getElementById(id) : null;
+        e.preventDefault();
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
     // Smooth scroll and active nav highlighting
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section');
