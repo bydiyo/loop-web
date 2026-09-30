@@ -124,7 +124,10 @@
       <a href="https://wa.me/528100000000?text=Hola%20loop%2C%20quiero%20m%C3%A1s%20clientes%20para%20mi%20empresa" class="btn btn-ghost btn-lg" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg> WhatsApp</a>
     </div>
 
-    <div class="hero-card reveal" aria-hidden="true">
+    <figure class="hero-media reveal">
+      <img src="img/hero.webp" width="900" height="1350" alt="Teléfono sonando con una llamada entrante sobre un escritorio de oficina de noche" fetchpriority="high" decoding="async">
+      <span class="fr tl"></span><span class="fr tr"></span><span class="fr bl"></span><span class="fr br"></span>
+    <div class="hero-card" aria-hidden="true">
       <div class="hc-top"><span class="hc-lab">Llamadas esta semana</span><span class="hc-live"><span class="rec-dot"></span>EN VIVO</span></div>
       <div class="hc-num"><span data-count="47">0</span><small>+212%</small></div>
       <div class="hc-bars">
@@ -132,6 +135,7 @@
       </div>
       <div class="hc-ring"><svg><use href="#i-phone"/></svg><span>Nueva solicitud de cotización</span></div>
     </div>
+    </figure>
   </div>
   <div class="ticker" aria-hidden="true">
     <div class="ticker-in">
@@ -174,8 +178,37 @@
   </div>
 </section>
 
+<!-- PARA QUIÉN -->
+<section class="sec" id="para-quien" data-sec="04">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow reveal">Para quién</p>
+      <h2 class="h2 reveal">Empresas con buen servicio que merecen <span class="muted">ser encontradas</span></h2>
+      <p class="body reveal">Si tus clientes te buscan antes de contratarte, necesitas estar donde buscan.</p>
+    </div>
+    <div class="sector-grid">
+      <figure class="sector reveal">
+        <img src="img/sector-construccion.webp" width="640" height="960" alt="Dueño de una constructora con casco y tableta en una obra al atardecer" loading="lazy" decoding="async">
+        <figcaption><h3>Constructoras</h3><p>Que te encuentren cuando buscan quién construya su proyecto.</p></figcaption>
+      </figure>
+      <figure class="sector reveal">
+        <img src="img/sector-despacho.webp" width="640" height="960" alt="Contador trabajando en su laptop en una oficina moderna de noche" loading="lazy" decoding="async">
+        <figcaption><h3>Despachos</h3><p>Contadores, abogados y consultores con la agenda llena.</p></figcaption>
+      </figure>
+      <figure class="sector reveal">
+        <img src="img/sector-clinica.webp" width="640" height="960" alt="Dentista sonriendo junto al sillón de su clínica" loading="lazy" decoding="async">
+        <figcaption><h3>Clínicas</h3><p>Pacientes nuevos que te eligen desde Google.</p></figcaption>
+      </figure>
+      <figure class="sector reveal">
+        <img src="img/sector-industria.webp" width="640" height="960" alt="Gerente de almacén con su teléfono entre estantes de mercancía" loading="lazy" decoding="async">
+        <figcaption><h3>Industria y distribución</h3><p>Compradores que llegan directo a pedir cotización.</p></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <!-- 4. SERVICIOS -->
-<section class="sec" id="servicios" data-sec="04">
+<section class="sec" id="servicios" data-sec="05">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow reveal">Servicios</p>
@@ -184,6 +217,7 @@
     </div>
     <div class="svc-grid">
       <article class="svc reveal" tabindex="0">
+        <div class="svc-img"><img src="img/svc-seo.webp" width="800" height="533" alt="Mapa nocturno de una ciudad con marcadores de ubicación iluminados" loading="lazy" decoding="async"></div>
         <div class="svc-top"><span class="svc-n">01</span><svg class="svc-i"><use href="#i-pin"/></svg></div>
         <h3>SEO Local + Google Business Profile</h3>
         <p>Aparece en el mapa cuando alguien de tu zona busca lo que haces.</p>
@@ -199,6 +233,7 @@
       </article>
 
       <article class="svc svc-feat reveal" tabindex="0">
+        <div class="svc-img"><img src="img/svc-web.webp" width="800" height="533" alt="Diseñadora trabajando en el sitio web de un cliente en su laptop" loading="lazy" decoding="async"></div>
         <div class="svc-top"><span class="svc-n">02</span><svg class="svc-i"><use href="#i-screen"/></svg></div>
         <h3>Diseño y Desarrollo Web de Alto Impacto</h3>
         <p>Una web rápida que convence y hace que te llamen. Precio fijo, sin sorpresas.</p>
@@ -214,6 +249,7 @@
       </article>
 
       <article class="svc reveal" tabindex="0">
+        <div class="svc-img"><img src="img/svc-ads.webp" width="800" height="533" alt="Mano sosteniendo un teléfono con un resultado de búsqueda destacado" loading="lazy" decoding="async"></div>
         <div class="svc-top"><span class="svc-n">03</span><svg class="svc-i"><use href="#i-target"/></svg></div>
         <h3>Google Ads (SEM)</h3>
         <p>Aparece arriba de todo desde el primer día, solo ante quien busca tu servicio.</p>
@@ -229,6 +265,7 @@
       </article>
 
       <article class="svc reveal" tabindex="0">
+        <div class="svc-img"><img src="img/svc-whatsapp.webp" width="800" height="533" alt="Teléfono mostrando una conversación de mensajes de noche" loading="lazy" decoding="async"></div>
         <div class="svc-top"><span class="svc-n">04</span><svg class="svc-i"><use href="#i-chat"/></svg></div>
         <h3>Automatizaciones · WhatsApp 24/7</h3>
         <p>Tu WhatsApp contesta, cotiza y agenda mientras tu equipo está ocupado.</p>
@@ -246,7 +283,7 @@
 </section>
 
 <!-- 5. PRECIOS -->
-<section class="sec" id="precios" data-sec="05">
+<section class="sec" id="precios" data-sec="06">
   <div class="wrap">
     <div class="sec-head center">
       <p class="eyebrow reveal">Precios claros</p>
@@ -304,16 +341,23 @@
 </section>
 
 <!-- 6. POR QUÉ -->
-<section class="sec" id="por-que" data-sec="06">
+<section class="sec" id="por-que" data-sec="07">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow reveal">Por qué loop</p>
       <h2 class="h2 reveal">Hablamos de clientes, no de tecnología</h2>
     </div>
+    <div class="why-split">
+      <figure class="why-media reveal">
+        <img src="img/estudio.webp" width="1400" height="933" alt="Equipo de diseño de loop trabajando frente a monitores con sitios web y métricas" loading="lazy" decoding="async">
+        <span class="fr tl"></span><span class="fr tr"></span><span class="fr bl"></span><span class="fr br"></span>
+        <figcaption><span class="rec-dot"></span>Estudio loop</figcaption>
+      </figure>
     <div class="why-grid">
       <div class="why reveal"><svg><use href="#i-talk"/></svg><h3>Sin tecnicismos</h3><p>Te explicamos todo en claro, sin jerga. Tú te enfocas en dirigir tu empresa.</p></div>
       <div class="why reveal"><svg><use href="#i-chart"/></svg><h3>Resultados medibles</h3><p>Cada mes ves cuántas llamadas, mensajes y visitas llegaron. Números, no promesas.</p></div>
       <div class="why reveal"><svg><use href="#i-wallet"/></svg><h3>Inversión a tu medida</h3><p>Precios fijos pensados para PyMEs: calidad de agencia grande, sin tarifas de corporativo.</p></div>
+    </div>
     </div>
 
     <ul class="badges" aria-label="Garantías">
@@ -326,7 +370,7 @@
 </section>
 
 <!-- 8. PROCESO -->
-<section class="sec" id="proceso" data-sec="07">
+<section class="sec" id="proceso" data-sec="08">
   <div class="wrap">
     <div class="sec-head">
       <p class="eyebrow reveal">Cómo funciona</p>
@@ -346,7 +390,8 @@
 </section>
 
 <!-- 9. CTA + FORM -->
-<section class="sec final" id="contacto" data-sec="08">
+<section class="sec final" id="contacto" data-sec="09">
+  <img class="final-bg" src="img/cta.webp" width="1536" height="1024" alt="" loading="lazy" decoding="async">
   <div class="final-glow" aria-hidden="true"></div>
   <div class="wrap final-in">
     <div class="final-copy">
