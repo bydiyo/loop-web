@@ -150,5 +150,118 @@
     setTimeout(() => window.open('https://wa.me/528100000000?text=' + encodeURIComponent(msg), '_blank', 'noopener'), 600);
   });
 
+  // Asistente (chat)
+  const chat = $('#chat'), openBtn = $('#chatOpen'), log = $('#chatLog');
+  const chatForm = $('#chatForm'), chatIn = $('#chatIn'), chips = $('#chatChips'), tip = $('#chatTip');
+  const sendBtn = $('.chat-send', chatForm);
+  const KEY = 'loop-chat';
+  let history = [];
+  let busy = false;
+
+  const esc = (s) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const fmt = (s) => esc(s)
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/(https?:\/\/[^\s<)]+[^\s<).,])/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+    .split(/\n{2,}/).map((p) => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('');
+
+  const addMsg = (role, text) => {
+    const el = document.createElement('div');
+    el.className = `msg ${role === 'user' ? 'user' : 'bot'}`;
+    el.innerHTML = fmt(text);
+    log.appendChild(el);
+    log.scrollTop = log.scrollHeight;
+    return el;
+  };
+  const save = () => { try { sessionStorage.setItem(KEY, JSON.stringify(history)); } catch {} };
+  try {
+    history = JSON.parse(sessionStorage.getItem(KEY) || '[]');
+    history.forEach((m) => addMsg(m.role, m.content));
+    if (history.length) chips.hidden = true;
+  } catch { history = []; }
+
+  const setChat = (open) => {
+    openBtn.setAttribute('aria-expanded', open);
+    openBtn.setAttribute('aria-label', open ? 'Cerrar asistente de loop' : 'Abrir asistente de loop');
+    document.body.classList.toggle('chat-on', open);
+    tip.classList.remove('show');
+    if (open) {
+      chat.hidden = false;
+      requestAnimationFrame(() => chat.classList.add('open'));
+      log.scrollTop = log.scrollHeight;
+      if (matchMedia('(min-width: 768px)').matches) chatIn.focus();
+    } else {
+      chat.classList.remove('open');
+      setTimeout(() => { if (!chat.classList.contains('open')) chat.hidden = true; }, 300);
+    }
+  };
+  openBtn.addEventListener('click', () => setChat(openBtn.getAttribute('aria-expanded') !== 'true'));
+  $('#chatClose').addEventListener('click', () => { setChat(false); openBtn.focus(); });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && !chat.hidden) setChat(false); });
+  setTimeout(() => { if (chat.hidden && !history.length) tip.classList.add('show'); }, 6000);
+  setTimeout(() => tip.classList.remove('show'), 14000);
+
+  chatIn.addEventListener('input', () => {
+    chatIn.style.height = 'auto';
+    chatIn.style.height = Math.min(chatIn.scrollHeight, 120) + 'px';
+  });
+  chatIn.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); chatForm.requestSubmit(); }
+  });
+  chips.addEventListener('click', (e) => {
+    const b = e.target.closest('button');
+    if (b) ask(b.textContent);
+  });
+  chatForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    ask(chatIn.value);
+  });
+
+  async function ask(text) {
+    text = text.trim();
+    if (!text || busy) return;
+    busy = true;
+    sendBtn.disabled = true;
+    chips.hidden = true;
+    chatIn.value = '';
+    chatIn.style.height = 'auto';
+    addMsg('user', text);
+    history.push({ role: 'user', content: text });
+    save();
+
+    const bubble = addMsg('assistant', '');
+    bubble.innerHTML = '';
+    bubble.classList.add('typing');
+    bubble.innerHTML = '<i></i><i></i><i></i>';
+    let reply = '';
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
+      });
+      if (!res.ok || !res.body) throw new Error(res.status);
+      const reader = res.body.getReader(), dec = new TextDecoder();
+      for (;;) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        reply += dec.decode(value, { stream: true });
+        bubble.classList.remove('typing');
+        bubble.innerHTML = fmt(reply);
+        log.scrollTop = log.scrollHeight;
+      }
+      reply = reply.trim();
+      if (!reply) throw new Error('vacío');
+    } catch {
+      reply = 'Ahora mismo no puedo responder. Escríbenos por WhatsApp y te atendemos: https://wa.me/528100000000';
+    }
+    bubble.classList.remove('typing');
+    bubble.innerHTML = fmt(reply);
+    history.push({ role: 'assistant', content: reply });
+    save();
+    busy = false;
+    sendBtn.disabled = false;
+    log.scrollTop = log.scrollHeight;
+  }
+
   $('#yr').textContent = new Date().getFullYear();
 })();
