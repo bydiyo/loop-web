@@ -21,6 +21,11 @@
 <meta name="twitter:description" content="Presencia digital profesional que trae clientes nuevos a tu empresa cada día.">
 <meta name="twitter:image" content="https://loop.mx/og-image.png">
 
+<script>
+  // Siempre abrir la página desde arriba
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+</script>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,7 +115,7 @@
   </div>
 </header>
 
-<main id="main">
+<main id="main" tabindex="-1">
 
 <!-- 1. HERO -->
 <section class="hero" id="inicio" data-sec="01">

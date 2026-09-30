@@ -3,6 +3,24 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Siempre abrir desde arriba (también al volver con el botón "atrás")
+  const toTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  toTop();
+  addEventListener('load', toTop);
+  addEventListener('pageshow', (e) => { if (e.persisted) toTop(); });
+
+  // Enlaces internos: scroll suave sin agregar #seccion a la URL
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    const target = id && document.getElementById(id);
+    e.preventDefault();
+    if (target && id !== 'inicio') target.scrollIntoView({ behavior: 'smooth' });
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (id === 'main') target.focus({ preventScroll: true });
+  });
+
   // Nav: scrolled state
   const nav = $('#nav');
   const onScroll = () => nav.classList.toggle('scrolled', scrollY > 20);
