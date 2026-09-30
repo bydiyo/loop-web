@@ -1,8 +1,0 @@
-{
-  "name": "loop-web",
-  "private": true,
-  "type": "module",
-  "dependencies": {
-    "@anthropic-ai/sdk": "latest"
-  }
-}
