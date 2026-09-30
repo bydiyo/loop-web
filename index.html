@@ -407,12 +407,172 @@
 
     .servicio-destacado {
       grid-column: 1 / -1;
-      display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 48px;
+      display: block;
       border-color: rgba(198, 255, 61, 0.35);
       background: linear-gradient(135deg, rgba(47, 92, 255, 0.10) 0%, rgba(20, 22, 28, 1) 55%);
       padding: 48px;
+    }
+
+    .servicio-intro {
+      max-width: 720px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+
+    .servicio-intro p {
+      margin-top: 12px;
+    }
+
+    .paquetes-eyebrow {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .paquetes-titulo {
+      font-size: 24px;
+      color: var(--color-text);
+      margin: 8px 0 6px;
+    }
+
+    .paquetes-subtitulo {
+      font-size: 14px;
+      color: var(--color-text-muted);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .paquetes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 8px;
+    }
+
+    .paquete-card {
+      background: rgba(11, 12, 16, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .paquete-card.paquete-popular {
+      border-color: rgba(198, 255, 61, 0.5);
+      background: rgba(198, 255, 61, 0.06);
+    }
+
+    .paquete-card .badge {
+      margin-bottom: 10px;
+    }
+
+    .paquete-tag {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--color-text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .paquetes-eyebrow .paquete-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent-lime);
+    }
+
+    .paquete-card .paquete-precio {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--color-text);
+      margin: 6px 0 2px;
+    }
+
+    .paquete-card .paquete-precio small {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+    }
+
+    .paquete-card .paquete-mensual {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      margin-bottom: 14px;
+    }
+
+    .paquete-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 18px;
+      font-size: 13px;
+      flex-grow: 1;
+    }
+
+    .paquete-card ul li {
+      margin: 8px 0;
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.4;
+      color: var(--color-text-secondary);
+    }
+
+    .paquete-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 6px;
+      height: 6px;
+      border: 1.5px solid var(--color-accent-lime);
+      border-radius: 2px;
+    }
+
+    .paquete-cta {
+      display: inline-block;
+      text-align: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(198, 255, 61, 0.4);
+      color: var(--color-accent-lime);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .paquete-cta:hover {
+      background: var(--color-accent-lime);
+      color: var(--color-base);
+    }
+
+    .garantias-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px dashed rgba(198, 255, 61, 0.2);
+    }
+
+    .garantia-item {
+      text-align: center;
+      font-size: 13px;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    .garantia-item b {
+      display: block;
+      color: var(--color-accent-lime);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      margin-bottom: 4px;
     }
 
     .servicio-destacado h3 {
@@ -732,7 +892,8 @@
     /* Responsive */
     @media (max-width: 1024px) and (min-width: 769px) {
       .servicios-grid { grid-template-columns: repeat(2, 1fr); }
-      .servicio-destacado { grid-template-columns: 1fr; gap: 8px; }
+      .paquetes-grid { grid-template-columns: repeat(2, 1fr); }
+      .garantias-row { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 768px) {
@@ -774,13 +935,19 @@
       }
 
       .servicio-destacado {
-        grid-template-columns: 1fr;
-        gap: 8px;
         padding: 32px 24px;
       }
 
       .servicio-destacado h3 {
         font-size: 26px;
+      }
+
+      .paquetes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .garantias-row {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .servicio-card {
@@ -874,29 +1041,69 @@
       <div class="servicios-grid">
         <!-- Web de alto impacto (destacado) -->
         <article class="servicio-card servicio-destacado">
-          <div>
+          <div class="servicio-intro">
             <span class="badge">Servicio insignia</span>
             <h3>Diseño y Desarrollo de Páginas Web de <span>Alto Impacto</span></h3>
             <p>No creamos plantillas genéricas ni sitios saturados de información que nadie lee. Diseñamos y desarrollamos plataformas web estratégicas, rápidas y visualmente impecables, enfocadas en una sola misión: transformar visitantes curiosos en clientes y oportunidades reales de negocio.</p>
-            <div class="precio">
-              <div class="precio-fila">
-                <span class="precio-label">Inversión inicial</span>
-                <span class="precio-monto">$12,000 – $20,000 <small>MXN</small></span>
-              </div>
-              <div class="precio-fila">
-                <span class="precio-label">Mantenimiento mensual</span>
-                <span class="precio-monto">$1,500 – $3,000 <small>/mes</small></span>
-              </div>
-              <p class="precio-nota">Landing page avanzada o sitio de 3 a 5 secciones. 50% de anticipo y 50% contra entrega. <b>Incluye diagnóstico empresarial gratis.</b></p>
+          </div>
+
+          <div class="paquetes-eyebrow">
+            <span class="paquete-tag">PRECIOS CLAROS, SIN SORPRESAS</span>
+            <h4 class="paquetes-titulo">Elige tu punto de partida</h4>
+            <p class="paquetes-subtitulo">Tres paquetes con precio fijo. Sabes exactamente qué recibes y cuánto cuesta antes de escribirnos.</p>
+          </div>
+
+          <div class="paquetes-grid">
+            <div class="paquete-card">
+              <span class="paquete-tag">Landing Estratégica</span>
+              <div class="paquete-precio">$8,500 <small>MXN</small></div>
+              <div class="paquete-mensual">+ $1,200/mes de mantenimiento</div>
+              <ul>
+                <li>1 página, hasta 4 secciones</li>
+                <li>Diseño enfocado en conversión (CRO)</li>
+                <li>Formulario + botón de WhatsApp</li>
+                <li>SEO técnico básico</li>
+                <li>2 rondas de revisión</li>
+              </ul>
+              <a href="https://wa.me/[+52-81-0000-0000]?text=Hola%20Loop%2C%20me%20interesa%20el%20paquete%20Landing%20Estrat%C3%A9gica%20(%248%2C500%20MXN)" class="paquete-cta">Elegir Landing Estratégica</a>
+            </div>
+
+            <div class="paquete-card paquete-popular">
+              <span class="badge">El más elegido</span>
+              <span class="paquete-tag">Sitio Profesional</span>
+              <div class="paquete-precio">$14,000 <small>MXN</small></div>
+              <div class="paquete-mensual">+ $1,800/mes de mantenimiento</div>
+              <ul>
+                <li>3 a 4 páginas</li>
+                <li>Todo lo de Landing Estratégica</li>
+                <li>Galería de trabajos/proyectos</li>
+                <li>Sitemap XML + alta en Search Console</li>
+                <li>3 rondas de revisión</li>
+              </ul>
+              <a href="https://wa.me/[+52-81-0000-0000]?text=Hola%20Loop%2C%20me%20interesa%20el%20paquete%20Sitio%20Profesional%20(%2414%2C000%20MXN)" class="paquete-cta">Elegir Sitio Profesional</a>
+            </div>
+
+            <div class="paquete-card">
+              <span class="paquete-tag">Plataforma a Medida</span>
+              <div class="paquete-precio">Desde $20,000 <small>MXN</small></div>
+              <div class="paquete-mensual">+ desde $2,800/mes de mantenimiento</div>
+              <ul>
+                <li>5+ páginas o vistas</li>
+                <li>Todo lo de Sitio Profesional</li>
+                <li>Blog o contenido dinámico</li>
+                <li>Pagos, CRM o integraciones a medida</li>
+                <li>4 rondas de revisión</li>
+              </ul>
+              <a href="https://wa.me/[+52-81-0000-0000]?text=Hola%20Loop%2C%20me%20interesa%20el%20paquete%20Plataforma%20a%20Medida" class="paquete-cta">Elegir Plataforma a Medida</a>
             </div>
           </div>
-          <ul class="feature-list">
-            <li><strong>Enfoque en conversión (CRO):</strong> estructuras limpias y UX/UI diseñadas para guiar al usuario de la mano hacia el contacto o la compra.</li>
-            <li><strong>Diseño minimalista y sofisticado:</strong> una estética moderna, sobria y con criterio que comunica autoridad y eleva la percepción de tu marca desde el primer segundo.</li>
-            <li><strong>Optimización técnica extrema:</strong> sitios ultrarrápidos, adaptados a celulares y tablets, con SEO técnico integrado desde el inicio.</li>
-            <li><strong>Integración comercial:</strong> conexión con tus canales de comunicación, formularios de captación, pasarelas de pago o CRM según lo que tu operación necesite.</li>
-            <li><strong>Mantenimiento mensual:</strong> respaldos, monitoreo 24/7, 1 a 2 horas de cambios al mes y un reporte sencillo de visitas y búsquedas.</li>
-          </ul>
+
+          <div class="garantias-row">
+            <div class="garantia-item"><b>Respuesta en 24h</b>a cualquier cotización o duda</div>
+            <div class="garantia-item"><b>15 días de ajustes</b>incluidos después de publicar</div>
+            <div class="garantia-item"><b>Diagnóstico gratis</b>antes de cobrarte un peso</div>
+            <div class="garantia-item"><b>Código 100% tuyo</b>sin dependencia de Loop</div>
+          </div>
         </article>
 
         <!-- SEO Local -->
@@ -973,7 +1180,7 @@
         </article>
       </div>
 
-      <p class="servicios-pie">Precios en pesos mexicanos. Las mensualidades empiezan el mes siguiente a la entrega.</p>
+      <p class="servicios-pie">Precios en pesos mexicanos. Las mensualidades empiezan el mes siguiente a la entrega e incluyen backups, monitoreo 24/7, una bolsa de horas de soporte y un reporte mensual de tráfico y SEO.</p>
     </section>
 
     <!-- Por qué Loop -->
